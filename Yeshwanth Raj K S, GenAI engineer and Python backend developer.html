@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yeshwanth Raj K S, GenAI engineer and Python backend developer</title>
+<meta name="description" content="Portfolio of Yeshwanth Raj K S: LLM pipelines, RAG and FastAPI services on AWS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F1; --ink:#13181B; --soft:#4A5358; --rule:#D5DBD6;
+  --red:#C62B34; --green:#17775A;
+  --glow:rgba(23,119,90,.18); --ruled:rgba(19,24,27,.05); --hero-a:#DCE8E0; --hero-b:#F2F4F1;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1417; --ink:#E8ECEA; --soft:#A0AAA6; --rule:#263035;
+    --red:#FF7077; --green:#46C494; color-scheme:dark;
+    --glow:rgba(70,196,148,.16); --ruled:rgba(232,236,234,.045); --hero-a:#0A2220; --hero-b:#0F1417;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1417; --ink:#E8ECEA; --soft:#A0AAA6; --rule:#263035;
+  --red:#FF7077; --green:#46C494; color-scheme:dark;
+  --glow:rgba(70,196,148,.16); --ruled:rgba(232,236,234,.045); --hero-a:#0A2220; --hero-b:#0F1417;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(900px 520px at 10% -6%,var(--glow),transparent 70%),var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;overflow-x:clip}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+a{color:inherit;text-decoration-thickness:.07em;text-underline-offset:.22em}
+a:hover{color:var(--green)}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+nav{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px 0;font-family:var(--display);font-weight:500;font-size:.98rem}
+nav div{display:flex;gap:8px 22px;flex-wrap:wrap}
+nav a{text-decoration:none}
+nav a:hover{text-decoration:underline}
+.hero{padding:clamp(28px,7vw,76px) 0 56px}
+.intro{margin:0 0 18px;color:var(--soft);max-width:60ch}
+h1{font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.12;font-size:clamp(1.7rem,4.4vw,2.9rem);margin:0;--lines:3;min-height:calc(var(--lines) * 1.12em);text-wrap:balance}
+@media (max-width:640px){h1{--lines:6}}
+.draft{transition:color .3s;text-decoration:line-through transparent;text-decoration-thickness:.08em}
+.draft.struck{color:var(--red);text-decoration-color:var(--red)}
+.meterbox{margin:30px 0 0;max-width:560px}
+.meter{position:relative;height:8px;background:var(--rule);border-radius:4px}
+.fill{height:100%;width:19%;background:var(--red);border-radius:4px;transition:width .9s cubic-bezier(.3,.7,.2,1),background-color .4s}
+.fill.pass{background:var(--green)}
+.tick{position:absolute;left:30%;top:-6px;bottom:-6px;width:2px;background:var(--ink)}
+.tickl{position:absolute;left:30%;top:16px;transform:translateX(-50%);font-family:var(--display);font-size:.78rem;color:var(--soft)}
+.read{display:flex;gap:14px;align-items:baseline;margin-top:34px;font-family:var(--display);flex-wrap:wrap}
+#score{font-size:1.6rem;font-weight:700;min-width:3.2ch;font-variant-numeric:tabular-nums}
+#status{color:var(--soft);font-size:.98rem}
+button{font:inherit;font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--ink);background:transparent;border:1.5px solid var(--ink);border-radius:999px;padding:9px 18px;cursor:pointer;margin-top:18px}
+button:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+button:disabled{opacity:.45;cursor:default}
+.note{font-size:.92rem;color:var(--soft);max-width:62ch;margin:22px 0 0}
+.sum{margin:34px 0 0;padding-top:20px;border-top:1px solid var(--rule);max-width:64ch}
+h2{font-family:var(--display);font-weight:700;font-size:1.55rem;letter-spacing:-.01em;line-height:1.2;margin:0 0 26px}
+section{padding:46px 0;border-top:1px solid var(--rule)}
+.case{display:grid;gap:10px;padding:0 0 34px}
+.case+.case{padding-top:34px;border-top:1px solid var(--rule)}
+@media (min-width:720px){.case{grid-template-columns:210px 1fr;gap:36px}}
+h3{font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.25;margin:0}
+.state{display:flex;align-items:center;gap:8px;margin-top:8px;font-family:var(--display);font-size:.9rem;color:var(--soft)}
+.state::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c,var(--soft))}
+.prod{--c:var(--green)} .uat{--c:#C98A12} .poc{--c:var(--red)}
+.case p{margin:0 0 12px;max-width:62ch}
+.built{color:var(--soft);font-size:.95rem}
+dl{margin:0;display:grid;gap:16px}
+@media (min-width:720px){dl{grid-template-columns:210px 1fr;gap:16px 36px}}
+dt{font-family:var(--display);font-weight:700}
+dd{margin:0;max-width:62ch}
+.contact p{max-width:58ch;margin:0 0 18px}
+.about p,.creative p{max-width:62ch;margin:0 0 14px}
+.when{margin-top:8px;font-family:var(--display);font-size:.9rem;color:var(--soft)}
+.role{font-family:var(--display);font-weight:700;margin:0 0 6px}
+.case ul{margin:0 0 12px;padding-left:1.15em;max-width:62ch}
+.case li{margin-bottom:8px}
+.more{margin:30px 0 0;font-family:var(--display);font-weight:500}
+.cue{display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:30px;font-family:var(--display);font-weight:500;font-size:.95rem;text-decoration:none}
+.cue::after{content:"";width:1px;height:42px;background:var(--ink);transform-origin:top;animation:grow 2.2s ease-in-out infinite}
+@keyframes grow{0%{transform:scaleY(0);opacity:1}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+.links{display:flex;gap:26px;flex-wrap:wrap;font-family:var(--display);font-weight:500;font-size:1.05rem}
+footer{padding:30px 0 44px;color:var(--soft);font-size:.9rem;border-top:1px solid var(--rule)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.cue::after{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="wrap">
+  <nav>
+    <span>Yeshwanth Raj K S</span>
+    <div><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#github">GitHub</a><a href="#education">Education</a><a href="#contact">Contact</a></div>
+  </nav>
+
+  <header class="hero">
+    <p class="intro">Yeshwanth Raj K S, GenAI engineer and Python backend developer in Chennai. Watch the system I built at Avasoft edit a draft until it sounds like a person.</p>
+    <h1 id="draft" class="draft" aria-live="polite">I’m Yeshwanth. I build the backend side of AI products, from APIs and retrieval to deployment on AWS.</h1>
+    <button type="button" id="replay">Run it again</button>
+    <p class="sum">Eleven months at Avasoft, working on client and internal projects: one system in production, one that reached UAT, and one proof of concept.</p>
+    <a class="cue" href="#about">Keep reading</a>
+  </header>
+
+  <section id="about" class="about">
+    <h2>About me</h2>
+    <p>I grew up in Chennai and studied Electronics and Communication Engineering. Along the way I found that the part I enjoy most is writing software that other people actually use, so I moved from circuits to code, and then to AI.</p>
+    <p>Today I build the backend side of AI products: the APIs, the retrieval systems, and the plumbing that keeps model calls fast enough to run in the real world. I like problems that work in a demo and break outside it, because fixing those teaches me the most.</p>
+    <p>I give full effort to whatever I’m handed, and I’m honest about what I know and what I’m still learning.</p>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <article class="case">
+      <div><h3>Avasoft</h3><div class="when">Chennai, June 2025 to May 2026</div></div>
+      <div>
+        <p class="role">Intern Trainee Engineer, then Software Engineer Analyst</p>
+        <ul>
+          <li>Spent three months in structured training on Python, ML fundamentals and GenAI, then moved onto client projects and was later promoted to Software Engineer Analyst.</li>
+          <li>Built AI backend services on AWS Bedrock, running several models in parallel to cut response time.</li>
+          <li>Built and maintained 9 FastAPI endpoints with full CRUD on PostgreSQL and pgvector, working in Agile sprints.</li>
+          <li>Built custom MCP tools with Claude as the orchestrator, and the sync between Microsoft Graph and Jira data for about 1,400 employees.</li>
+          <li>Delivered with Lambda, S3, RDS, CloudWatch, Secrets Manager, Azure DevOps and Git.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section id="work">
+    <h2>Work I can explain from the first decision to the last</h2>
+
+    <article class="case">
+      <div><h3>Judge-and-rewrite pipeline</h3><div class="state poc">Proof of concept</div></div>
+      <div>
+        <p>A client’s platform could remove bias from news articles, but the output read like obvious AI writing. I built the backend for a serverless loop on AWS Lambda where two models score a draft, rewrite it, and re-score it until it passes or reaches an iteration cap.</p>
+        <p>Every iteration is stored in its own table, so one GET request replays an article’s whole history. When Lambda started timing out, I swapped Opus 4 for Claude 4.5 and ran both models in parallel. A run dropped from about 60 seconds to 12.</p>
+        <p class="built">Built with Python, AWS Lambda, Bedrock (Claude 4.5, OpenAI OSS), Prompt Manager, PostgreSQL and ThreadPoolExecutor.</p>
+      </div>
+    </article>
+
+    <article class="case">
+      <div><h3>Engineering performance dashboard</h3><div class="state prod">In production at Avasoft</div></div>
+      <div>
+        <p>Leadership had no single view of how engineers and teams were loaded across sprints. I built the Individual Performance and Allocation modules on FastAPI and PostgreSQL, and the Microsoft Graph sync that keeps roles and departments current for about 1,400 employees.</p>
+        <p>Allocation is flagged Healthy, Warning or Over-allocated, and overloaded people get a suggested redistribution, because leaders needed something to act on, not just a number.</p>
+        <p class="built">Built with FastAPI, PostgreSQL, Microsoft Graph API, Jira API and Azure DevOps.</p>
+      </div>
+    </article>
+
+    <article class="case">
+      <div><h3>Statement of work generator</h3><div class="state uat">Reached UAT</div></div>
+      <div>
+        <p>A three-phase system that drafts statements of work and level-of-effort documents. I built the document parsing and pgvector retrieval, then the MCP tools and Claude skills that let Claude pull live project data from Jira. I also designed the Markdown wiki layer on S3 that replaced the first knowledge base.</p>
+        <p>The team later built LangGraph agent workflows on top of it, and I worked with them on that.</p>
+        <p class="built">Built with Python, FastAPI, pgvector, MCP, Claude, AWS S3 and Jira.</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="github">
+    <h2>Personal projects on GitHub</h2>
+    <p class="note" style="margin:0 0 30px">Two projects built on the same foundation. The first is a backend with authentication, roles, relational data, migrations and tests. The second reuses its architecture for an AI feature: embeddings, vector search, and a language model that refuses when the documents don’t have the answer. Both share a layered design, a standard response format with a request ID, typed errors logged to a table, Alembic migrations, Pydantic models and settings-driven configuration.</p>
+    <article class="case">
+      <div><h3>Employee Attendance and Leave API</h3><div class="state prod">Personal project</div></div>
+      <div>
+        <p>A REST API for tracking attendance (check-in and check-out) and managing leave requests. It uses JWT authentication with three roles, admin, manager and employee, with access tokens that last 15 minutes and refresh tokens that last 7 days.</p>
+        <p>The data model has six tables: employees with a department and a manager link, departments, attendance logs, leave requests, yearly leave quotas and an error log. The code is layered into routes, services and repositories, with Alembic migrations written alongside the models, a uniform response format, and a route-level error handler that writes failures to the database.</p>
+        <p>Along the way I fixed type mismatches between async SQLAlchemy and Pydantic, a password hashing compatibility error, and a test suite that failed on foreign keys and wrong status codes until I fixed its shared database fixtures. It is not deployed yet and has no rate limiting.</p>
+        <p class="built">Built with FastAPI, async SQLAlchemy, PostgreSQL, Alembic, Pydantic, pytest, Docker and uv.</p>
+      </div>
+    </article>
+    <article class="case">
+      <div><h3>RAG Job Assistant</h3><div class="state uat">In progress</div></div>
+      <div>
+        <p>An API where you upload documents, ask questions, and get answers with source citations, or a refusal when the documents don’t say. Documents are split into chunks, turned into embeddings and stored in PostgreSQL with pgvector, and the model answers from what retrieval returns.</p>
+        <p>I compared fixed and recursive chunking on a 10-question evaluation set, then rewrote the prompt to remove two failures: answers that mixed up people across documents, which I fixed by labelling every source, and answers that went beyond what the documents said. I also swapped the model provider behind a client layer when credits ran out.</p>
+        <p>The test set is small, there is no authentication yet, and the tests are still to write. Next are chat history, citation filtering, and a LangGraph agent that compares a resume with a job description.</p>
+        <p class="built">Built with FastAPI, PostgreSQL, pgvector and Cloudflare Workers AI.</p>
+      </div>
+    </article>
+    <p class="more">More at <a href="https://github.com/Yeshwanthraj25">github.com/Yeshwanthraj25</a></p>
+  </section>
+
+  <section id="stack">
+    <h2>What I work with</h2>
+    <dl>
+      <dt>Models and agents</dt><dd>AWS Bedrock (Claude, OpenAI OSS, Titan), RAG, MCP, prompt engineering and tool calling.</dd>
+      <dt>Backend</dt><dd>Python, FastAPI, REST APIs, async code, Pytest, PostgreSQL and pgvector.</dd>
+      <dt>Cloud and delivery</dt><dd>Lambda, S3, RDS, CloudWatch, Secrets Manager, Git, Azure DevOps and CI/CD.</dd>
+      <dt>Integrations</dt><dd>Microsoft Graph API and the Atlassian Jira API.</dd>
+    </dl>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <dl>
+      <dt>B.Tech, Electronics and Communication Engineering</dt><dd>Hindustan Institute of Technology and Science, April 2025, CGPA 7.56.</dd>
+      <dt>Higher secondary, Class XII</dt><dd>St. Bede’s Anglo Indian Higher Secondary School, 2021, 78 percent.</dd>
+      <dt>Certifications</dt><dd>Advanced Robotics and Internet of Things (NPTEL, IIT), Test Engineering for Electronic Hardware (Qmax), an embedded systems internship and an AI workshop.</dd>
+      <dt>Languages</dt><dd>Tamil, English and Telugu.</dd>
+    </dl>
+  </section>
+
+  <section id="creative" class="creative">
+    <h2>Away from the keyboard</h2>
+    <p>I love singing and exploring new places.</p>
+    <p>The headline at the top of this page is the other creative thing I’ll point to. I wanted a portfolio that shows how I think, so it edits itself the way my pipeline edits a draft.</p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Get in touch</h2>
+    <p>I’m based in Chennai and available to start immediately. I’m open to backend and GenAI engineering roles.</p>
+    <div class="links">
+      <a href="mailto:yeshwanthrajmy@gmail.com">yeshwanthrajmy@gmail.com</a>
+      <a href="https://github.com/Yeshwanthraj25">GitHub</a>
+      <a href="https://www.linkedin.com/in/yeshwanth-raj-k-s-71896821b">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>Yeshwanth Raj K S</footer>
+</div>
+
+<script>
+(function(){
+  var drafts=[
+    "In today’s fast-paced digital landscape, I leverage cutting-edge AI to deliver seamless, robust solutions.",
+    "I build AI-powered backend systems that deliver real value for businesses.",
+    "I’m Yeshwanth. I build the backend side of AI products, from APIs and retrieval to deployment on AWS."
+  ];
+  var $=function(id){return document.getElementById(id)};
+  var draft=$("draft"),btn=$("replay");
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var sleep=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
+  function show(i){draft.textContent=drafts[i];draft.classList.remove("struck")}
+  function done(){show(2)}
+  async function play(){
+    btn.disabled=true;
+    if(reduce){done();btn.disabled=false;return}
+    show(0);
+    await sleep(1800);
+    for(var k=1;k<3;k++){
+      draft.classList.add("struck");
+      await sleep(1000);
+      show(k);
+      await sleep(1600);
+    }
+    btn.disabled=false;
+  }
+  btn.addEventListener("click",play);
+  play();
+})();
+</script>
+<script>
+(function(){
+  var cv=document.getElementById("bg");
+  if(!cv||!cv.getContext)return;
+  var ctx=cv.getContext("2d");
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var gap=30,R=150,W=0,H=0,mx=-9999,my=-9999,last=0,col={};
+  function hex(h){h=h.trim().replace("#","");return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)]}
+  function mix(a,b,k){return [(a[0]+(b[0]-a[0])*k)|0,(a[1]+(b[1]-a[1])*k)|0,(a[2]+(b[2]-a[2])*k)|0]}
+  function colors(){var s=getComputedStyle(document.documentElement);col.ink=hex(s.getPropertyValue("--ink"));col.green=hex(s.getPropertyValue("--green"));col.red=hex(s.getPropertyValue("--red"))}
+  function size(){var d=Math.min(window.devicePixelRatio||1,2);W=window.innerWidth;H=window.innerHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0)}
+  function frame(t){
+    ctx.clearRect(0,0,W,H);
+    var cx=mx,cy=my;
+    if(!reduce&&t-last>2500){cx=W*(0.5+0.38*Math.sin(t/4300));cy=H*(0.5+0.34*Math.sin(t/3100+1))}
+    var off=-((window.scrollY*0.2)%gap);
+    for(var y=off-gap;y<H+gap;y+=gap){
+      for(var x=gap/2;x<W+gap;x+=gap){
+        var dx=x-cx,dy=y-cy,d=Math.sqrt(dx*dx+dy*dy);
+        var wave=Math.sin((x+y)/90-t/1800)*0.5+0.5;
+        var r=1+wave*0.7,a=0.12+wave*0.05,c=col.ink,k;
+        if(d<R){k=1-d/R;c=mix(col.ink,col.green,Math.min(1,k*1.4));r+=k*2.6;a+=k*0.6}
+        else if(d<R*1.4){k=1-(d-R)/(R*0.4);c=col.red;r+=k*1.4;a+=k*0.35}
+        ctx.fillStyle="rgba("+c[0]+","+c[1]+","+c[2]+","+a.toFixed(3)+")";
+        ctx.beginPath();ctx.arc(x,y,r,0,6.2832);ctx.fill();
+      }
+    }
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  colors();size();
+  window.addEventListener("resize",function(){size();if(reduce)frame(0)});
+  window.addEventListener("pointermove",function(e){mx=e.clientX;my=e.clientY;last=performance.now()},{passive:true});
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){colors();if(reduce)frame(0)});
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
